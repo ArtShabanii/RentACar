@@ -8,6 +8,9 @@ import ShowUsers from './components/users/ShowUsers.vue'
 import EditUser from './components/users/EditUser.vue'
 import Login from './components/auth/Login.vue'
 import Register from './components/auth/Register.vue'
+import Products from './components/Products.vue'
+import Reservation from './components/Reservation.vue'
+
 
 
 
@@ -24,5 +27,7 @@ export const routes = [
     { path: '/edit-user/:id', name:'EditUser', component:EditUser},
     { path: '/add-user', name:'AddUser', component: AddUser},
     { path: '/login', name:'Login', component: Login},
-    { path: '/register', name:'Register', component: Register}
+    { path: '/register', name:'Register', component: Register},
+    { path: '/products', name:'Products', component: Products},
+    { path: '/reservations', name:'Reservation', component: Reservation}
 ]

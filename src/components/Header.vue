@@ -11,15 +11,45 @@
                         <router-link class="nav-link" to="/" >
                             <a class="nav-link">Home</a>
                         </router-link>
+                        <router-link class="nav-link" to="/reservations" >
+                            <a class="nav-link">Reserve</a>
+                        </router-link>
+                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto"></ul>
+                            <ul class="navbar-nav ml-auto">
+                                <template v-if="user.loggedIn">
+                                    <template v-if="user.data.email == 'art-2000@hotmail.com'">
+                                        <router-link class="nav-link" to="/users-list" >
+                                            <a class="nav-link">Users</a>
+                                        </router-link>
+                                        <router-link class="nav-link" to="/products" >
+                                            <a class="nav-link">Cars</a>
+                                        </router-link>
+                                    </template> 
+                                    <template v-else>
+                                        
+                                    </template>
+                                </template>
+                                <template v-else>
+                                    
+                                </template>
+                            </ul>
+                        </div>
                         <router-link class="nav-link" to="/about" >
                             <a class="nav-link">About</a>
                         </router-link>
                         <router-link class="nav-link" to="/contact" >
                             <a class="nav-link">Contact</a>
                         </router-link>
-                        <router-link class="nav-link" to="/users-list" >
-                            <a class="nav-link">Users</a>
-                        </router-link>
+                        
+
+
+                       
+                        
+
+
+
+
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto"></ul>
                             <ul class="navbar-nav ml-auto">

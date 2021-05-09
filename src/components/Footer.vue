@@ -16,6 +16,7 @@
   </div>
   <hr>
   <div class="footer-copyright text-center">© 2020 Copyright: Rent a Car</div>
+  <div class="footer-copyright text-center"><a href="https://github.com/ArtShabanii/RentACar" style="color:white; text-decoration:none;">github.com/ArtShabanii/RentACar</a></div>
   <br>
 </footer>
 </div>

@@ -4,12 +4,16 @@
     <div class="row">
   <h1>Contact</h1>
 </div>
+<br>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d386.4081947757478!2d21.153203574245076!3d42.647180668500276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa31dd05b21bd09de!2sUniversiteti%20p%C3%ABr%20Biznes%20dhe%20Teknologji!5e0!3m2!1sen!2s!4v1579859245620!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      <img src="../assets/mercedes2.jpg" alt="" style="width:100%; height:auto">
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12">
+      <div>
+      <p id="contactParagraph">For all enquiries, please write to us using the form below.</p>
+      </div>
     <form @submit="onSubmit">
     <div class="form-group">
     <input type="text" class="form-control" placeholder="Name" v-model="contacts.name">
@@ -18,9 +22,9 @@
     <input type="email" class="form-control" placeholder="Email" v-model="contacts.email">
     </div>
     <div class="form-group">
-    <textarea class="form-control" rows="4" placeholder="Enter your comments about site" v-model="contacts.description"></textarea>
+    <textarea class="form-control" rows="4" placeholder="Enter your concern" v-model="contacts.description"></textarea>
     </div>
-    <input type="submit" class="btn btn-secondary btn-block" value="Send">
+    <input type="submit" class="btn" value="Send" id="sendcontact">
     </form>
     </div>
     </div>
@@ -43,7 +47,7 @@ export default {
       .then(response => {
         //console.log(response);
         this.$router.push({
-          name: 'user',
+          name: 'home',
           //params: { id: response.data._id }
         })
         })
@@ -52,3 +56,35 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container{
+  padding:5%;
+}
+
+#sendcontact{
+  background-color:#2e3192;
+  padding-left:10%;
+  padding-right:10%;
+  color:white;
+  transition: 0.8s ease;
+}
+
+#sendcontact:hover{
+  background-color:#111;
+  padding-left:10%;
+  padding-right:10%;
+  color:white;
+}
+
+#contactParagraph:before{
+    content: "";
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: #2e3192;
+        left: 0;
+        top:3%;
+        position: absolute;
+}
+</style>
