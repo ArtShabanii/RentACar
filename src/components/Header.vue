@@ -17,12 +17,15 @@
                         <router-link class="nav-link" to="/contact" >
                             <a class="nav-link">Contact</a>
                         </router-link>
+                        <router-link class="nav-link" to="/users-list" >
+                            <a class="nav-link">Users</a>
+                        </router-link>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto"></ul>
                             <ul class="navbar-nav ml-auto">
                             <template v-if="user.loggedIn">
                                 <div class="nav-item">
-                                <a class="nav-link"> Welcome {{user.data.displayName}} </a>
+                                <a class="nav-link"> Welcome, {{user.data.displayName}} </a>
                                 </div>
                                 <li class="nav-item">
                                 <a class="nav-link" @click.prevent="signOut">Sign out</a>
