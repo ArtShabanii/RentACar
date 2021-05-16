@@ -8,20 +8,19 @@
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
     <form @submit="onSubmit">
-
-    <select name="" id="" class="form-select" v-model="reservations.product">
+      <label for="">Please select a Car: </label>
+    <select name="" id="product" class="form-select">
       <option value="" disabled selected>Nothing Selected</option>
-      <option v-for="product in productfields" v-bind:key="product._id" >{{product.name }}</option>
+      <option v-for="product in productfields" v-bind:key="product._id" >{{product.name}} - {{product.description}}</option>
     </select>
     <br>
-    <label for="">Name:</label>
-    <input type="text" class="form-control" v-model="reservations.name" placeholder="Your name:">
+    <input type="text" id="email" class="form-control" v-model="user.data.email" readonly="readonly">
     <br>
     <label for="">Data e marrjes:</label>
-    <input type="date" class="form-control" v-model="reservations.pickupdate">
+    <input type="date" id="pickupdate" class="form-control">
     <br>
     <label for="">Tel Number:</label>
-    <input type="text" class="form-control" v-model="reservations.tel">
+    <input type="text" id="tel" class="form-control" >
     <br>
     <input type="submit" class="btn" value="Reserve" id="sendcontact">
     </form>
@@ -31,9 +30,16 @@
 </template>
 <script>
 /* eslint-disable */
+import { mapGetters } from "vuex";
 import axios from 'axios'
 export default {
   name: 'CreateReservations',
+  computed: {
+    ...mapGetters({
+// map `this.user` to `this.$store.getters.user`
+      user: "user"
+    })
+  },
   data () {
     return {
       productfields:{},
@@ -50,9 +56,18 @@ export default {
     })
   },
   methods: {
-    onSubmit () {
+    onSubmit (evt) {
+
+      evt.preventDefault();
+
+      var bodyFormData = new FormData();
       
-      axios.post(`http://localhost:4000/reservations`, this.reservations)
+      bodyFormData.set("product", document.getElementById("product").value);
+      bodyFormData.set("email", document.getElementById("email").value);
+      bodyFormData.set("pickupdate", document.getElementById("pickupdate").value);
+      bodyFormData.set("tel", document.getElementById("tel").value);
+      
+      axios.post(`http://localhost:4000/reservations`, bodyFormData)
       .then(response => {
         //console.log(response);
         this.$router.push({
