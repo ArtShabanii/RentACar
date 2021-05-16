@@ -3,8 +3,24 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 
+var multer = require('multer');
+var fs = require('fs');
 
-/* GET ALL Contacts */
+
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../static/images/')
+  },
+  filename: (req, file, cb) => {
+    let ext = file.originalname.substring(file.originalname.indexOf(".") + 1);
+    cb(null, file.fieldname + '-' + Date.now() + "." + ext)
+  }
+});
+var upload = multer({
+  storage: storage
+});
+
+/* GET ALL products */
 router.get('/', function(req, res, next) {
   Products.find(function (err, products) {
       if (err) return next(err);
@@ -12,7 +28,7 @@ router.get('/', function(req, res, next) {
     });
   });
   
-/* GET SINGLE Contacts BY ID */
+/* GET SINGLE PRODUCT BY ID */
 router.get('/:id', function(req, res, next) {
   Products.findById(req.params.id, function (err, post) {
       if (err) return next(err);
@@ -20,15 +36,29 @@ router.get('/:id', function(req, res, next) {
     });
   });
 
-  /* SAVE Contacts */
+  /* SAVE PRODUCT 
 router.post('/', function(req, res, next) {
   Products.create(req.body, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
+  });*/
+
+  router.post('/', upload.single('image'),
+    function (req, res) {
+      let products = req.body;
+      products.name = req.body.name
+      products.price = req.body.price
+      products.image = req.body.image != 'undefined' ? req.file.filename : null
+      products.description = req.body.description
+      Products.create(products, function (err, post) {
+        if (err) return next(err);
+        res.json(post);
+      });
+    
   });
 
-  /* UPDATE Contacts */
+  /* UPDATE PRODUCT */
 router.put('/:id', function(req, res, next) {
     console.log(req.body);
     Products.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -37,7 +67,7 @@ router.put('/:id', function(req, res, next) {
     });
   });
   
-  /* DELETE Contacts */
+  /* DELETE PRODUCT */
 router.delete('/:id', function(req, res, next) {
   Products.findByIdAndRemove(req.params.id, req.body, function (err, post) {
       if (err) return next(err);

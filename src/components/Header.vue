@@ -1,7 +1,7 @@
 <template>
   <div>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <img src="../assets/logorent.png" alt="">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -11,9 +11,7 @@
                         <router-link class="nav-link" to="/" >
                             <a class="nav-link">Home</a>
                         </router-link>
-                        <router-link class="nav-link" to="/reservations" >
-                            <a class="nav-link">Reserve</a>
-                        </router-link>
+                        
                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto"></ul>
                             <ul class="navbar-nav ml-auto">
@@ -25,9 +23,16 @@
                                         <router-link class="nav-link" to="/products" >
                                             <a class="nav-link">Cars</a>
                                         </router-link>
+                                         <router-link class="nav-link" to="/reservations" >
+                                            <a class="nav-link">Reserve</a>
+                                        </router-link>
+                                        
                                     </template> 
                                     <template v-else>
-                                        
+                                        <router-link class="nav-link" to="/reservations" >
+                                            <a class="nav-link">Reserve</a>
+                                        </router-link>
+                                                
                                     </template>
                                 </template>
                                 <template v-else>
@@ -50,10 +55,13 @@
 
 
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto"></ul>
-                            <ul class="navbar-nav ml-auto">
+                        
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav float-right">
                             <template v-if="user.loggedIn">
+                                
                                 <div class="nav-item">
                                 <a class="nav-link"> Welcome, {{user.data.displayName}} </a>
                                 </div>
@@ -70,9 +78,8 @@
                                 </li>
                             </template>
                             </ul>
+                            
                         </div>
-                    </ul>
-                </div>
             </nav>
         </header>
   </div>
@@ -106,6 +113,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+header:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 30px;
+      margin: -30px auto 0;
+    border-radius: 120px / 10px;
+    box-shadow: 0px 0px 2px rgba(0,0,0,.6);
+}
 
     #navbarSupportedContent ul{
         text-align: right;

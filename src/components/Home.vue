@@ -1,7 +1,7 @@
 <template>
     <div class="container features">
         <br>
-        <h1>Rent a Car </h1>
+        <h1 id="header1">Rent a Car </h1>
         <div class="row" id="home">
           <div class="divout">
             <img class="imgaphotne" src="../assets/carr.jpg" alt="">
@@ -9,7 +9,8 @@
           <b-container class="bv-example-row" >
                 <b-row>
                     <b-col v-for="product in productfields" v-bind:key="product._id">
-                        <img src="../assets/mercedes2.jpg" class="imagediv"/>
+                        <!-- <img src="../assets/mercedes2.jpg" class="imagediv"/> -->
+                        <img :src="`http://localhost:5000/images/${product.image}`" class="imagediv">
                         <br><br>
                         <b-row>
                             <b-col>
@@ -34,6 +35,11 @@
 </template>
 
 <style scoped>
+
+#header1{
+  color: #2e3192
+}
+
     .imagediv{
         width:auto;
         height:200px;
