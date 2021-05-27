@@ -16,9 +16,9 @@ export default {
   data() {
     return {
       images: [
-        'https://i.ibb.co/MZySG6M/png-01.png',
-        'https://i.ibb.co/XtMmFq9/png-02.png',
-        'https://i.ibb.co/fCz7yf5/png-03.png'
+        'http://localhost:8080/png-01.png',
+        'http://localhost:8080/png-02.png',
+        'http://localhost:8080/png-03.png'
         ],
       timer: null,
       currentIndex: 0,

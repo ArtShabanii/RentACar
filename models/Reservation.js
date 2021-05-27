@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const HomeSchema = mongoose.Schema({
     product: String,
-    email: String,
+    name: String,
     pickupdate: String,
     tel: String,
     updated_date: { type: Date, default: Date.now },

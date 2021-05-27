@@ -76,6 +76,7 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(data => {
           this.$router.push({name: 'home',})
+          window.localStorage.setItem('email', this.form.email);
         })
         .catch(err => {
           this.error = err.message;

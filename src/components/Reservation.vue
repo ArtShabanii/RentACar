@@ -8,19 +8,19 @@
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
     <form @submit="onSubmit">
-      <label for="">Please select a Car: </label>
-    <select name="" id="product" class="form-select">
+
+    <select name="" id="" class="form-select" v-model="reservations.product">
       <option value="" disabled selected>Nothing Selected</option>
-      <option v-for="product in productfields" v-bind:key="product._id" >{{product.name}} - {{product.description}}</option>
+      <option v-for="product in productfields" v-bind:key="product._id" >{{product.name }} - {{product.description}}</option>
     </select>
     <br>
-    <input type="text" id="email" class="form-control" v-model="user.data.email" readonly="readonly">
-    <br>
     <label for="">Data e marrjes:</label>
-    <input type="date" id="pickupdate" class="form-control">
+    <input type="date" class="form-control" v-model="reservations.pickupdate">
     <br>
     <label for="">Tel Number:</label>
-    <input type="text" id="tel" class="form-control" >
+    <input type="text" class="form-control" v-model="reservations.tel">
+
+    
     <br>
     <input type="submit" class="btn" value="Reserve" id="sendcontact">
     </form>
@@ -31,20 +31,16 @@
 <script>
 /* eslint-disable */
 import { mapGetters } from "vuex";
+//let emailname = document.getElementById('dataemail').value;
 import axios from 'axios'
 export default {
   name: 'CreateReservations',
-  computed: {
-    ...mapGetters({
-// map `this.user` to `this.$store.getters.user`
-      user: "user"
-    })
-  },
+  
   data () {
     return {
       productfields:{},
       products: {},
-      reservations:{}
+      reservations:{name: window.localStorage.getItem('email') }
     }
   },created () {
     axios.get(`http://localhost:4000/products`)
@@ -55,23 +51,21 @@ export default {
       this.errors.push(e)
     })
   },
+  computed: {
+    ...mapGetters({
+// map `this.user` to `this.$store.getters.user`
+      user: "user"
+    })
+  },
   methods: {
-    onSubmit (evt) {
+    onSubmit () {
 
-      evt.preventDefault();
-
-      var bodyFormData = new FormData();
       
-      bodyFormData.set("product", document.getElementById("product").value);
-      bodyFormData.set("email", document.getElementById("email").value);
-      bodyFormData.set("pickupdate", document.getElementById("pickupdate").value);
-      bodyFormData.set("tel", document.getElementById("tel").value);
-      
-      axios.post(`http://localhost:4000/reservations`, bodyFormData)
+      axios.post(`http://localhost:4000/reservations`, this.reservations)
       .then(response => {
         //console.log(response);
         this.$router.push({
-          name: 'home',
+          name: 'MyReservations',
           //params: { id: response.data._id }
         })
         })

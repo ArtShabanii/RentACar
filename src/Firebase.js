@@ -20,5 +20,13 @@ firebase.auth().onAuthStateChanged(user=>{
     store.dispatch("fetchUser", user);
 });
 
-export default firebase;
+firebase.getCurrentUser  = () => {
+    return new Promise((resolve,reject)=>{
+        const unsubscribe = firebase.auth().onAuthStateChanged(user=>{
+            unsubscribe();
+            resolve(user);
+        }, reject);
+    });
+}
 
+export default firebase;

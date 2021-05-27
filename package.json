@@ -14,19 +14,26 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "firebase": "^8.5.0",
+    "firebase-admin": "^9.8.0",
+    "material-icons": "^0.6.4",
+    "mdbvue": "^6.7.2",
     "mongoose": "^5.12.7",
     "multer": "^1.4.2",
+    "sass": "^1.34.0",
+    "sass-loader": "^7.3.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
+    "vuetify": "^2.5.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "vue-cli-plugin-vuetify": "~2.4.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

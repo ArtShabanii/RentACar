@@ -36,9 +36,6 @@
 
 <style scoped>
 
-#header1{
-  color: #2e3192
-}
 
     .imagediv{
         width:auto;
